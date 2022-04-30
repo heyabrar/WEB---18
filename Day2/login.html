@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style>
+        h3{
+            padding-top: 30px;
+        }
+        #signInfrom{
+            width: 30%;
+            height: 400px;
+            margin: auto;
+            text-align: center;
+            font-family: 'Poppins', sans-serif; 
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            border-radius: 8px;
+        }
+
+        #signInemail{
+            width: 70%;
+            height: 30px;
+        }
+
+        #signInpassword{
+            margin-top: 20px;
+            width: 70%;
+            height: 30px;
+        }
+
+        .emailContent{
+            margin-left: -245px;
+            margin-bottom: 2px;
+        }
+        .passwordContent{
+            margin-left: -210px;
+            margin-bottom: -15px;
+        }
+
+        #submitbtn{
+            width: 70%;
+            height: 30px;
+            margin-top: 30px;
+            border-radius: 5px;
+            border: 0px;
+        }
+        #submitbtn:hover{
+            background-color: black;
+            color: white;
+        }
+
+        #login{
+            display: flex;
+            font-size: 14px;
+           margin-left: 90px;
+           margin-top: 20px;
+        }
+        .signin{
+            text-decoration: none;
+            margin-top: 13px;
+            color: rgb(73, 128, 231);
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+  <form id="signInfrom" >
+    <h3>Sign In</h3>
+    <p class="emailContent">Email</p>
+      <input type="text" placeholder="Enter Email" id="signInemail">
+      <br>
+      <p class="passwordContent">Password</p>
+      <input type="password"  placeholder="Password" id="signInpassword">
+      <br>
+      <input type="submit" value="SIGN IN" id="submitbtn">
+      <div id="login"><p>Don't have an account?</p> 
+        <a class="signin" href="index.html">Sign Up</a></div> 
+  </form>
+</body>
+</html>
+
+<script>
+   document.querySelector("#signInfrom").addEventListener("submit", myformfun)
+  var user_data_arr = JSON.parse(localStorage.getItem("signupData")) || [];
+   function myformfun (){
+       event.preventDefault();
+       var data = 
+       {
+           email : document.querySelector("#signInemail").value,
+           password : document.querySelector("#signInpassword").value,
+       };
+    
+       var logged_in_data = user_data_arr.find(c => c.user_email==data.email && c.user_password==data.password)
+       console.log(logged_in_data,data)
+       if (!logged_in_data )
+       {
+         alert("Wrong Credentials")
+         return;
+       }
+        
+       else if(logged_in_data.user_email == data.email && logged_in_data.user_password == data.password)
+       {
+           alert("Sign In Successfull")
+           console.log(logged_in_data)
+       }
+   };
+
+</script>

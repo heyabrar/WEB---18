@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+
+        form{
+            width: 30%;
+            height: 450px;
+            margin: auto;
+            text-align: center;
+            font-family: 'Poppins', sans-serif; 
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            border-radius: 8px;
+        }
+        h3{
+            margin-top: 30px;
+            padding: 10px;
+        }
+
+        #name{
+            width: 80%;
+            height: 30px;
+        }
+
+        #email{
+            margin-top: 20px;
+            width: 80%;
+            height: 30px;
+        }
+        #password{
+            margin-top: 20px;
+            width: 80%;
+            height: 30px;
+        }
+
+        .EmailContent{
+            margin-left: -250px;
+            margin-bottom: -1px;
+            margin-top: 30px;
+        }
+
+        #emailContent{
+            margin-left: -280px;
+            margin-bottom: -19px;
+            margin-top: 30px;
+        }
+        .PaswordContent{
+            margin-left: -260px;
+            margin-bottom: -20px;
+            margin-top: 30px;
+        }
+
+        #submitbtn{
+            width: 80%;
+            margin-top: 30px;
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 40px;
+            font-family: 'Poppins', sans-serif; 
+            border-radius: 5px;
+            border: 0px;
+        }
+        #submitbtn:hover{
+            background-color: black;
+            color: white;
+        }
+
+        #login{
+            display: flex;
+            font-size: 14px;
+           margin-left: 80px;
+        }
+
+        .signin{
+            text-decoration: none;
+            margin-top: 13px;
+            color: rgb(73, 128, 231);
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form">
+        <h3>Sign Up</h3>
+        <p class="EmailContent">Full Name</p>
+        <input type="text" placeholder="Enter your full name" id="name">
+        <p id="emailContent">Email</p>
+        <input type="text" placeholder="Enter Your Email" id="email">
+        <p class="PaswordContent">Pasword</p>
+        <input type="password"  placeholder="Pasword" id="password">
+        <br>
+       <input type="submit" value="SIGN UP" id="submitbtn">
+      <div id="login"><p>Already have an account?</p> 
+        <a class="signin" href="login.html">Sign In</a></div> 
+    </form>
+</body>
+</html>
+
+<script>
+    document.querySelector("#form").addEventListener("submit", myform)
+   
+    function myform (){
+        event.preventDefault();
+        var user_data_arr = JSON.parse( localStorage.getItem("signupData")) || []
+
+        var data = 
+        {
+            user_name : document.querySelector("#name").value,
+            user_email : document.querySelector("#email").value,
+            user_password : document.querySelector("#password").value,
+        };
+        console.log(data);
+        user_data_arr.push(data);
+
+        localStorage.setItem("signupData",JSON.stringify(user_data_arr));
+       alert("Signed Up Successfully")
+    };
+</script>
